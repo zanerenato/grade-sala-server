@@ -1,16 +1,20 @@
+'use strict';
 // Import dependencies
 const express = require('express')
 const bodyParser = require('body-parser')
 const compression = require('compression')
 const cors = require('cors')
 const helmet = require('helmet')
+// const serverless = require('serverless-http')
+
 
 // Import routes
 const agendamentoRouter = require('./routes/agendamento-route')
 const userRouter = require('./routes/user-route')
 
 // Set default port for express app
-const PORT = 4001
+const PORT = 8080;
+const HOST = '0.0.0.0';
 
 // Create express app
 const app = express()
@@ -39,6 +43,8 @@ app.use(function (req, res, next) {
 })
 
 // Start express app
-app.listen(PORT, function() {
-  console.log(`Server is running on: ${PORT}`)
-})
+app.listen(PORT, HOST)
+console.log(`Running on http://${HOST}:${PORT}`);
+
+// module.exports = app;
+// module.exports.handler = serverless(app);
